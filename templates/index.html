@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <div style="color:#D2D2D2; padding:10px;" >
+    <div style="padding:10px;" >
         <form action="{{url_for('predict')}}" method="post" >
             <h2>Vehicle Prediction</h2>
             <h3>Year</h3>
@@ -29,7 +29,7 @@
 			
 			<h4>Fuel type</h3>
 			<select id="Fuel_Type" name="Fuel_Type" >
-			<option value="Petrol">Petrol</option>
+    			<option value="Petrol">Petrol</option>
                 <option value="Diesel">Diesel</option>
                 <option value="CNG">CNG</option>
 			</select>
@@ -40,10 +40,10 @@
             </select>
 			
 			<h3>Transmission type</h3><br><select name="Transmission_Type" id="Transmission_Type" >
-                <option value="Mannual">Manual Car</option>
-                <option value="Automatic">Automatic Car</option>
+                <option value="Mannual">Manual</option>
+                <option value="Automatic">Automatic</option>
             </select>
-			
+			<br/><br/>
 			<button id="sub" name="submit" >Calculate the selling price</button>
         </form>
 		
@@ -53,4 +53,8 @@
 		
 		
     </div
+    
+    
+    
+    
 </body>

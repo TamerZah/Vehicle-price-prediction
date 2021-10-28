@@ -12,7 +12,7 @@ import pickle
 import numpy as np
 import sklearn
 from sklearn.preprocessing import StandardScaler
-app = Flask((__name__))
+app = Flask(__name__)
 model = pickle.load(open("random_forest_regression_model.pkl", "rb"))
 
 @app.route("/", methods=["GET"])
@@ -28,10 +28,10 @@ standard_to = StandardScaler()
 def predict():
     if request.method == "POST":
         Year = int(request.form["Year"])
-        Present_Price = float(request.form("Present_Price"))
+        Present_Price = float(request.form["Present_Price"])
         Kms_Driven = int(request.form["Kms_Driven"])
         Owner = int(request.form["Owner"])
-        Fuel_Type = request.form["Fuel_Type_Diesel"]
+        Fuel_Type = request.form["Fuel_Type"]
         if Fuel_Type == "Petrol":
             Fuel_Type_Diesel = 0
             Fuel_Type_Petrol = 1
@@ -49,18 +49,18 @@ def predict():
             Seller_Type_Individual = 1
 
         Transmission_Type = request.form["Transmission_Type"]
-        if Transmission_Type == "Manual Car":
+        if Transmission_Type == "Mannual":
             Transmission_Manual = 1
-        elif Transmission_Type  == "Automatic Car":
+        else:
             Transmission_Manual = 0
 
-        prediction = model.predict([Year, Present_Price, Kms_Driven, Owner, Fuel_Type_Diesel, Fuel_Type_Petrol, Seller_Type_Individual, Transmission_Manual])
+        prediction = model.predict([[Year, Present_Price, Kms_Driven, Owner, Fuel_Type_Diesel, Fuel_Type_Petrol, Seller_Type_Individual, Transmission_Manual]])
         output = round(prediction[0], 2)
         
         if output < 0:
-            return render_template("index.html", prediction_texts = "Sorry you can't sell this vehicle")
+            return render_template("index.html", Prediction_text = "Sorry you can't sell this vehicle")
         else:
-            return render_template("index.html", prediction_texts = "Vehicle price: {}".format(output))
+            return render_template("index.html", Prediction_text = "Vehicle price: {}".format(output))
     else:
         return render_template("index.html")
 
