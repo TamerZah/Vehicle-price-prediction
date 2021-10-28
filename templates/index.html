@@ -1,0 +1,56 @@
+<DOCTYPE html>
+<html lang="en" >
+
+<head>
+    <meta charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div style="color:#D2D2D2; padding:10px;" >
+        <form action="{{url_for('predict')}}" method="post" >
+            <h2>Vehicle Prediction</h2>
+            <h3>Year</h3>
+            <input id="Year" name="Year" type="number" />
+            
+			<h3>Present Price</h3>
+            <input id="Present_Price" name="Present_Price" required="required" />
+			
+			<h3>Kilometers driven</h3>
+			<input id="Kms_Driven" name="Kms_Driven" />
+			
+			<h3>Numer of users used the vehicle</h3>
+			<select id="Owner" name="Owner" >
+			<option value="1" >1</option>
+			<option value="2" >2</option>
+			<option value="3" >3</option>
+			</select>
+			
+			<h4>Fuel type</h3>
+			<select id="Fuel_Type" name="Fuel_Type" >
+			<option value="Petrol">Petrol</option>
+                <option value="Diesel">Diesel</option>
+                <option value="CNG">CNG</option>
+			</select>
+			
+			<h3>Seller type</h3><br><select name="Seller_Type" id="Seller_Type">
+                <option value="Dealer">Dealer</option>
+                <option value="Individual">Individual</option>
+            </select>
+			
+			<h3>Transmission type</h3><br><select name="Transmission_Type" id="Transmission_Type" >
+                <option value="Mannual">Manual Car</option>
+                <option value="Automatic">Automatic Car</option>
+            </select>
+			
+			<button id="sub" name="submit" >Calculate the selling price</button>
+        </form>
+		
+		<br/><br/>
+		
+		<h3>{{ Prediction_text }}</h3>
+		
+		
+    </div
+</body>
